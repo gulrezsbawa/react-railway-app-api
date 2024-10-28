@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
@@ -8,10 +9,10 @@ app.use(express.json());
 
 // MySQL connection
 const pool = mysql.createPool({
-  host: process.env.DB_HOST || 'mysql.railway.internal',
-  user: process.env.DB_USER || 'root',
-  database: process.env.DB_NAME || 'railway',
-  password: process.env.DB_PASSWORD || 'UznfDFyMCawGpTpOpnRNNOWqumBHWtiJ',
+  host: process.env.DB_HOST ,
+  user: process.env.DB_USER,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT || 3306,
 }).promise();
 
@@ -25,7 +26,7 @@ app.get('/api', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
